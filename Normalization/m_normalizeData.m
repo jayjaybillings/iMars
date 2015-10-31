@@ -1,22 +1,26 @@
 function m_normalizeData(hObject)
     %this will run the normalization
     
-    message = sprintf('Running normalization ...');
-    statusBarMessage(hObject, message, 0, false);
+    % FIXME! Print to logger instead
+    % message = sprintf('Running normalization ...');
+    %statusBarMessage(hObject, message, 0, false);
     
-    handles = guidata(hObject);
-    
+    % FIXME! Pass concrete type
+    %handles = guidata(hObject);    
     %ask where to create the normalized data folder
-    path = handles.path;
-    folderName = uigetdir(path, 'Where do you want to create the Normalized data folder?');
-    if folderName == 0
-        return %we did not select a folder
-    end
-    folderName = [folderName '/Normalized'];
-    [~, ~] = mkdir(folderName);
+    %path = handles.path;
+    % FIXME! Pass file names into the function! Don't retrieve them here!
+    % outside it.
+    %folderName = uigetdir(path, 'Where do you want to create the Normalized data folder?');
+    %if folderName == 0
+    %    return %we did not select a folder
+    %end
     
-    listDataFiles = handles.files.fileNames;
-    nbrFiles = numel(listDataFiles);
+    %folderName = [folderName '/Normalized'];
+    %[~, ~] = mkdir(folderName);
+    
+    %listDataFiles = handles.files.fileNames;
+    %nbrFiles = numel(listDataFiles);
     
     [roiLogicalArray, isWithRoi] = getRoiLogicalArray(hObject);
     
@@ -31,8 +35,9 @@ function m_normalizeData(hObject)
     data = handles.files.images;
     
     for i=1:nbrFiles
-        
-        tmpData = data{i};
+     
+        %Don't use cell arrays
+    %    tmpData = data{i};
         tmpDataFiltered = applyGammaFiltering(hObject, tmpData);
         
         imshow(tmpDataFiltered,[]);
