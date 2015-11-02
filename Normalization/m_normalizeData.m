@@ -1,5 +1,17 @@
 function m_normalizeData(hObject)
     %this will run the normalization
+
+    % The problem with this function is that hObject is dynamically constructed 
+    % from the gui. The good thing is that the next few lines that are commented
+    % out can be moved to a preprocessing function and arguments with concrete
+    % types can be passed into this function instead. 
+
+    % We also cannot use cell arrays if we use MATLAB coder.
+
+    % After that, this function will convert fine as long as all of the
+    % functions it calls are also in the conversion process. Thus we need to 
+    % make sure those functions can be converted first, their dependencies too,
+    % etc. 
     
     % FIXME! Print to logger instead
     % message = sprintf('Running normalization ...');
